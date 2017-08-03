@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 		spaceship = GetComponent<Spaceship>();
 
 		// ローカル座標のY軸のマイナス方向に移動する
-		spaceship.Move(transform.up * -1);
+		Move(transform.up * -1);
 		if (!spaceship.canShot) yield break;
 
 		while (true)
@@ -35,5 +35,9 @@ public class Enemy : MonoBehaviour
 			spaceship.Explosion();
 			Destroy(this.gameObject);
 		}
+	}
+	void Move(Vector2 dir)
+	{
+		GetComponent<Rigidbody2D>().velocity = dir * spaceship.speed;
 	}
 }
